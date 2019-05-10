@@ -1,13 +1,14 @@
 const PORT = 3000;
 const express = require("express");
-const passport = require("passport");
 const app = express();
 const bodyParser = require("body-parser");
-const authRoute = require("./auth/auth");
+const secureRoute = require("./routes/secure-route");
 const routes = require("./routes/route");
+require("./auth/auth");
 
 app.use(bodyParser.json());
 app.use("/auth", routes);
+app.use("/user", secureRoute);
 app.get("/", (req, res) => {
     res.send("Homepage");
 });
