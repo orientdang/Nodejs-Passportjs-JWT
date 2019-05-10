@@ -12,6 +12,10 @@ app.use("/user", secureRoute);
 app.get("/", (req, res) => {
     res.send("Homepage");
 });
+app.get("/logout", (req, res) => {
+    req.logOut();
+    res.send("you just log out");
+});
 app.listen(PORT, () => {
     console.log(`app listen on port ${PORT}`);
 });

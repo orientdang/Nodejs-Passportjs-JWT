@@ -5,7 +5,9 @@ const uri = `mongodb+srv://${userMongo}:${passwordMongo}@nodejs-passportjs-jwt-i
 const bcrypt = require("bcrypt");
 // connect
 mongoose.connect(uri, err => {
-    console.log(err);
+    if (err) {
+        console.log(err);
+    }
 });
 // set up schema
 const UserSchema = new mongoose.Schema({
@@ -24,7 +26,7 @@ const UserSchema = new mongoose.Schema({
 //     next();
 // });
 // valid user'password
-UserSchema.methods.isPasswordValid =  function(password) {
+UserSchema.methods.isPasswordValid = function(password) {
     const user = this;
     console.log(password == user.password);
     if (password == user.password) {
